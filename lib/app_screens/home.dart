@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 
 class Home extends StatelessWidget {
   static const fontSize = 35.0;
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -11,8 +12,10 @@ class Home extends StatelessWidget {
             margin: EdgeInsets.all(50.0),
             child: Row(
               children: [
-                getText("Cebu Pacific"),
-                getText("From Manila to Siargao")
+                Expanded(
+                    child: getText("Cebu Pacific")),
+                Expanded(
+                    child: getText("From Manila to Siargao"))
               ],
             )));
   }
