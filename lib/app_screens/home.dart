@@ -9,12 +9,13 @@ class Home extends StatelessWidget {
         child: Container(
             padding: EdgeInsets.only(left: 10.0, top: 40.0),
             alignment: Alignment.center,
-            color: Colors.redAccent,
+            color: Colors.white,
             margin: EdgeInsets.all(50.0),
             child:Column(
               children: [
                 getRow("CEB", "From Manila to Cebu"),
-                getRow("PAL", "From Siargao to Manila")
+                getRow("PAL", "From Siargao to Manila"),
+                FlightImageAsset()
               ],
             )
            )
@@ -30,7 +31,7 @@ class Home extends StatelessWidget {
             fontFamily: 'Raleway',
             fontWeight: FontWeight.w300,
             fontStyle: FontStyle.italic,
-            color: Colors.white)
+            color: Colors.lightBlue)
     );
   }
 
@@ -44,4 +45,14 @@ class Home extends StatelessWidget {
       ],
     );
   }
+
+}
+class FlightImageAsset extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    AssetImage assetImage = AssetImage('images/flight_icon.png');
+    Image image = Image(image: assetImage, width: 150.0,height: 150.0);
+    return Container(child: image);
+  }
+
 }
