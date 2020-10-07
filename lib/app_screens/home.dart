@@ -7,10 +7,18 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
         child: Container(
+            padding: EdgeInsets.only(left: 10.0, top: 40.0),
             alignment: Alignment.center,
             color: Colors.redAccent,
             margin: EdgeInsets.all(50.0),
-            child: getRow()));
+            child:Column(
+              children: [
+                getRow("CEB", "From Manila to Cebu"),
+                getRow("PAL", "From Siargao to Manila")
+              ],
+            )
+           )
+    );
   }
 
   Text getText(String text, double textSize) {
@@ -22,16 +30,17 @@ class Home extends StatelessWidget {
             fontFamily: 'Raleway',
             fontWeight: FontWeight.w300,
             fontStyle: FontStyle.italic,
-            color: Colors.white));
+            color: Colors.white)
+    );
   }
 
-  Row getRow(){
+  Row getRow(String airline, String destination){
     return Row(
       children: [
         Expanded(
-            child: getText("Cebu Pacific", 35.0)),
+            child: getText(airline, 35.0)),
         Expanded(
-            child: getText("From Manila to Siargao", 25.0))
+            child: getText(destination, 25.0))
       ],
     );
   }
