@@ -10,25 +10,29 @@ class Home extends StatelessWidget {
             alignment: Alignment.center,
             color: Colors.redAccent,
             margin: EdgeInsets.all(50.0),
-            child: Row(
-              children: [
-                Expanded(
-                    child: getText("Cebu Pacific")),
-                Expanded(
-                    child: getText("From Manila to Siargao"))
-              ],
-            )));
+            child: getRow()));
   }
 
-  Text getText(String text) {
+  Text getText(String text, double textSize) {
     return Text(text,
         textDirection: TextDirection.ltr,
         style: TextStyle(
             decoration: TextDecoration.none,
-            fontSize: fontSize,
+            fontSize: textSize,
             fontFamily: 'Raleway',
             fontWeight: FontWeight.w300,
             fontStyle: FontStyle.italic,
             color: Colors.white));
+  }
+
+  Row getRow(){
+    return Row(
+      children: [
+        Expanded(
+            child: getText("Cebu Pacific", 35.0)),
+        Expanded(
+            child: getText("From Manila to Siargao", 25.0))
+      ],
+    );
   }
 }
