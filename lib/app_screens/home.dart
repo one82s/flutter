@@ -14,7 +14,15 @@ class Home extends StatelessWidget{
   }
 
   Text getText(){
-    return Text("Flight", textDirection: TextDirection.ltr
+    return Text("Flight", textDirection: TextDirection.ltr,
+      style:TextStyle(
+          decoration: TextDecoration.none,
+          fontSize: 75.0,
+          fontFamily: 'Raleway',
+          fontWeight: FontWeight.w300,
+          fontStyle: FontStyle.italic,
+          color: Colors.white
+      )
     );
   }
 
