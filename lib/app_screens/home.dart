@@ -7,8 +7,7 @@ class Home extends StatelessWidget{
       child:Container(
           alignment: Alignment.center,
           color: Colors.redAccent,
-          width:200.0,
-          height: 100.0,
+          margin:EdgeInsets.all(50.0),
           child:getText()
       )
     );
