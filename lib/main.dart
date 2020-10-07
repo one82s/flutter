@@ -1,5 +1,5 @@
-
 import "package:flutter/material.dart";
+import 'app_screens/first_screen.dart';
 
 void main()=> runApp(new SampleApp());
 
@@ -11,16 +11,7 @@ class SampleApp extends StatelessWidget{
         title: "Sample Application",
         home: Scaffold(
             appBar: AppBar(title: Text("Sample App - App Bar")),
-            body: Material(
-                color: Colors.redAccent,
-                child:
-                Center(
-                  child:
-                  Text("Hello World!",
-                      textDirection:TextDirection.ltr,
-                      style: TextStyle(color: Colors.white, fontSize: 40.0)),
-                )
-            ))
+            body:FirstScreen())
     );
   }
 
