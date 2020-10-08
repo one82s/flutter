@@ -24,15 +24,15 @@ class Home extends StatelessWidget {
     );
   }
 
-  Text getText(String text, double textSize, Color textColor) {
+  Text getText(String text, double textSize, Color textColor, FontWeight weight) {
     return Text(text,
         textDirection: TextDirection.ltr,
         style: TextStyle(
             decoration: TextDecoration.none,
             fontSize: textSize,
             fontFamily: fontFamily,
-            fontWeight: FontWeight.w300,
-            fontStyle: FontStyle.italic,
+            fontWeight: weight,
+            fontStyle: FontStyle.normal,
             color: textColor)
     );
   }
@@ -41,9 +41,9 @@ class Home extends StatelessWidget {
     return Row(
       children: [
         Expanded(
-            child: getText(airline, 30.0, Colors.lightBlue)),
+            child: getText(airline, 30.0, Colors.lightBlue, FontWeight.w700)),
         Expanded(
-            child: getText(destination, 20.0, Colors.lightBlue))
+            child: getText(destination, 20.0, Colors.lightBlue,FontWeight.w700))
       ],
     );
   }
@@ -70,7 +70,7 @@ class FlightBookButton extends StatelessWidget{
       height:50.0,
       child: RaisedButton(
         color: Colors.lightBlue,
-        child: home.getText("Book your flight", 20.0, Colors.white),
+        child: home.getText("Book your flight", 20.0, Colors.white, FontWeight.w300),
         elevation: 6.0,
         onPressed: ()=> bookFlight(context)
       )
