@@ -10,33 +10,22 @@ void main() {
 }
 
 Widget getListView(){
-  var listView = ListView(
-    children: [
-      ListTile(
-        leading: Icon(Icons.landscape),
-        title: Text("Landscape"),
-        subtitle: Text("Beautiful View"),
-        trailing: Icon(Icons.wb_sunny),
-        onTap: (){
-          debugPrint("Landscape was tapped");
-        }
-      ),
-      ListTile(
-          leading: Icon(Icons.laptop_chromebook),
-          title: Text("Work"),
+  var listItems = getListElements();
+  var listView = ListView.builder(
+      itemBuilder: (context,index){
+        return ListTile(
+          leading: Icon(Icons.arrow_right),
+          title: Text(listItems[index]),
           onTap: (){
-            debugPrint("Work was tapped");
+            debugPrint('${listItems[index]} was tapped');
           }
-      ),
-      ListTile(
-          leading: Icon(Icons.phone),
-          title: Text("Contact"),
-          onTap: (){
-            debugPrint("Contact was tapped");
-          }
-      )
-    ],
-  );
-  return listView;
+        );
+  });
+
+    return listView;
+
+}
+List <String> getListElements(){
+  return List<String>.generate(1000, (index) => "Item $index");
 }
 
