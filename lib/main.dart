@@ -21,9 +21,7 @@ Widget getListView(){
         return ListTile(
           leading: Icon(Icons.arrow_right),
           title: Text(listItems[index]),
-          onTap: (){
-            debugPrint('${listItems[index]} was tapped');
-          }
+          onTap: ()=> showSnackBar(context, listItems[index])
         );
   });
 
@@ -31,6 +29,17 @@ Widget getListView(){
 
 }
 List <String> getListElements(){
-  return List<String>.generate(1000, (index) => "Item $index");
+  return List<String>.generate(1000, (index) => 'Item $index');
+}
+
+void showSnackBar(BuildContext context, String item){
+  var snackBar = SnackBar(
+      content: Text('You just tapped $item'),
+      action: SnackBarAction(
+        label: 'UNDO',
+        onPressed: ()=>debugPrint('Performing UNDO operation')
+      )
+  );
+  Scaffold.of(context).showSnackBar(snackBar);
 }
 
