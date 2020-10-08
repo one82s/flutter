@@ -14,9 +14,26 @@ Widget getListView(){
     children: [
       ListTile(
         leading: Icon(Icons.landscape),
-        title: Text("Landscapr"),
+        title: Text("Landscape"),
         subtitle: Text("Beautiful View"),
-        trailing: Icon(Icons.wb_sunny)
+        trailing: Icon(Icons.wb_sunny),
+        onTap: (){
+          debugPrint("Landscape was tapped");
+        }
+      ),
+      ListTile(
+          leading: Icon(Icons.laptop_chromebook),
+          title: Text("Work"),
+          onTap: (){
+            debugPrint("Work was tapped");
+          }
+      ),
+      ListTile(
+          leading: Icon(Icons.phone),
+          title: Text("Contact"),
+          onTap: (){
+            debugPrint("Contact was tapped");
+          }
       )
     ],
   );
