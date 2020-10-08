@@ -4,7 +4,12 @@ void main() {
   runApp(MaterialApp(
     title: "List View Sample",
     home: Scaffold(
-      body: getListView()
+      body: getListView(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: ()=> debugPrint('FAB was clicked'),
+        child: Icon(Icons.add),
+        tooltip: 'Add one more item',
+      ),
     )
   ));
 }
