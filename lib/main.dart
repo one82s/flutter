@@ -20,6 +20,7 @@ class _FavoriteCityState extends State{
   String cityName = "";
   @override
   Widget build(BuildContext context) {
+    debugPrint("FavoriteCity is created");
     return Scaffold(
       appBar: AppBar(
         title: Text("Stateful Widget"),
@@ -31,8 +32,10 @@ class _FavoriteCityState extends State{
             TextField(
               onChanged: (String userInput){
                 setState(() {
+                  debugPrint("setState is called, tells the framework to redraw FavoriteCity widget");
                   cityName = userInput;
                 });
+                debugPrint("after setState is called");
               }
             ),
             Padding(
