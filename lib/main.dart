@@ -25,6 +25,7 @@ class _FavoriteCityState extends State{
         title: Text("Stateful Widget"),
       ),
       body: Container(
+        margin: EdgeInsets.all(20.0),
         child: Column(
           children: [
             TextField(
@@ -32,9 +33,12 @@ class _FavoriteCityState extends State{
                 cityName = userInput;
               }
             ),
-            Text(
-              "Your city name is $cityName",
-              style: TextStyle(fontSize: 20.0),
+            Padding(
+              padding: EdgeInsets.all(30.0),
+              child: Text(
+                "Your city name is $cityName",
+                style: TextStyle(fontSize: 20.0),
+              ),
             )
           ],
         ),
