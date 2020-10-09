@@ -30,7 +30,9 @@ class _FavoriteCityState extends State{
           children: [
             TextField(
               onChanged: (String userInput){
-                cityName = userInput;
+                setState(() {
+                  cityName = userInput;
+                });
               }
             ),
             Padding(
