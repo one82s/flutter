@@ -32,7 +32,7 @@ class _FavoriteCityState extends State{
         child: Column(
           children: [
             TextField(
-              onChanged: (String userInput){
+              onSubmitted: (String userInput){
                 setState(() {
                   debugPrint("setState is called, tells the framework to redraw FavoriteCity widget");
                   cityName = userInput;
