@@ -25,6 +25,8 @@ class _SIFormState extends State<SIForm>{
   final _principalHintText = 'Enter Principal e.g. 1200';
   final _roiText = 'Rate of Interest';
   final _roiHintText = 'In percent';
+  final _termText = 'Term';
+  final _termHintText = 'Terms in years';
 
   @override
   Widget build(BuildContext context) {
@@ -42,8 +44,28 @@ class _SIFormState extends State<SIForm>{
             ),
             getTextFieldColumnChild(
               getTextField(_roiText, _roiHintText)
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: getTextField(_termText, _termHintText)
+                ),
+                Expanded(
+                  child:DropdownButton(
+                    items: _currencies.map((value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value)
+                    );
+                    }).toList(),
+                    value: currencySelected,
+                    onChanged: (String newValueSelected){
+
+                    })
+                )
+              ],
             )
-          ],
+          ]
         )
 
       )
