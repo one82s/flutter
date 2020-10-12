@@ -51,6 +51,9 @@ class _SIFormState extends State<SIForm>{
                   Expanded(
                     child: getTextField(_termText, _termHintText)
                   ),
+                  Container(
+                    width: _minimumPadding * 5
+                  ),
                   Expanded(
                     child:DropdownButton(
                       items: _currencies.map((value) {
@@ -66,6 +69,32 @@ class _SIFormState extends State<SIForm>{
                   )
                 ],
               )
+            ),
+            getColumnChildWithPadding(
+              Row(
+                children: [
+                  Expanded(
+                    child: RaisedButton(
+                      child: Text('Calculate'),
+                      onPressed: (){
+                        debugPrint('Calculate Button was pressed');
+                      }
+                      )
+                  ),
+                  Expanded(
+                      child: RaisedButton(
+                          child: Text('Reset'),
+                          onPressed: (){
+                            debugPrint('Reset Button was pressed');
+                          }
+                      )
+                  ),
+                ],
+              )
+            ),
+            Padding(
+              padding: EdgeInsets.all(_minimumPadding*2),
+              child: Text('TODO: Output text here'),
             )
           ]
         )
