@@ -36,7 +36,7 @@ class _SIFormState extends State<SIForm>{
       ),
       body:Container(
         margin:EdgeInsets.all(_minimumPadding*2),
-        child:Column(
+        child:ListView(
           children: [
             getImageAsset(),
             getColumnChildWithPadding(
