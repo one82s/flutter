@@ -19,7 +19,13 @@ class SIForm extends StatefulWidget{
 
 class _SIFormState extends State<SIForm>{
   var _currencies = ['Peso', 'Dollar', 'Euro', 'Yen'];
+  var currencySelected = 'Peso';
   final _minimumPadding = 5.0;
+  final _principalText = 'Principal';
+  final _principalHintText = 'Enter Principal e.g. 1200';
+  final _roiText = 'Rate of Interest';
+  final _roiHintText = 'In percent';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,6 +37,12 @@ class _SIFormState extends State<SIForm>{
         child:Column(
           children: [
             getImageAsset(),
+            getTextFieldColumnChild(
+              getTextField(_principalText, _principalHintText)
+            ),
+            getTextFieldColumnChild(
+              getTextField(_roiText, _roiHintText)
+            )
           ],
         )
 
@@ -45,4 +57,26 @@ class _SIFormState extends State<SIForm>{
 
   }
 
+  TextField getTextField(String labelText, String hintText){
+    return   TextField(
+      keyboardType: TextInputType.number,
+      decoration: InputDecoration(
+        labelText: labelText,
+        hintText: hintText,
+
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(_minimumPadding),
+        ),
+      ),
+    );
+  }
+
+  Padding getTextFieldColumnChild(TextField textField){
+    return Padding(
+        padding: EdgeInsets.only(top: _minimumPadding, bottom: _minimumPadding),
+        child:(
+            textField
+        )
+    );
+  }
 }
