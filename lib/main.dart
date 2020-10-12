@@ -39,31 +39,33 @@ class _SIFormState extends State<SIForm>{
         child:Column(
           children: [
             getImageAsset(),
-            getTextFieldColumnChild(
-              getTextField(_principalText, _principalHintText)
+            getColumnChildWithPadding(
+               getTextField(_principalText, _principalHintText)
             ),
-            getTextFieldColumnChild(
-              getTextField(_roiText, _roiHintText)
+            getColumnChildWithPadding(
+               getTextField(_roiText, _roiHintText)
             ),
-            Row(
-              children: [
-                Expanded(
-                  child: getTextField(_termText, _termHintText)
-                ),
-                Expanded(
-                  child:DropdownButton(
-                    items: _currencies.map((value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value)
-                    );
-                    }).toList(),
-                    value: currencySelected,
-                    onChanged: (String newValueSelected){
+            getColumnChildWithPadding(
+              Row(
+                children: [
+                  Expanded(
+                    child: getTextField(_termText, _termHintText)
+                  ),
+                  Expanded(
+                    child:DropdownButton(
+                      items: _currencies.map((value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value)
+                      );
+                      }).toList(),
+                      value: currencySelected,
+                      onChanged: (String newValueSelected){
 
-                    })
-                )
-              ],
+                      })
+                  )
+                ],
+              )
             )
           ]
         )
@@ -93,11 +95,11 @@ class _SIFormState extends State<SIForm>{
     );
   }
 
-  Padding getTextFieldColumnChild(TextField textField){
+  Padding getColumnChildWithPadding(Widget widget){
     return Padding(
         padding: EdgeInsets.only(top: _minimumPadding, bottom: _minimumPadding),
         child:(
-            textField
+            widget
         )
     );
   }
