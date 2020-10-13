@@ -6,13 +6,19 @@ void main() {
         debugShowCheckedModeBanner: false,
         title: 'Simple Intereset Calculator',
         home: SIForm(),
+        theme: ThemeData(
+          brightness: Brightness.dark,
+          primaryColor: Colors.white,
+          accentColor: Colors.grey,
+          hintColor: Colors.white30,
+          focusColor: Colors.white
+        ),
       ));
 }
 
 class SIForm extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return _SIFormState();
   }
 
@@ -31,6 +37,7 @@ class _SIFormState extends State<SIForm>{
 
   @override
   Widget build(BuildContext context) {
+    TextStyle textStyle = Theme.of(context).textTheme.headline6;
     return Scaffold(
       appBar: AppBar(
         title: Text('Simple Intereset Calculator')
@@ -74,23 +81,12 @@ class _SIFormState extends State<SIForm>{
             getColumnChildWithPadding(
               Row(
                 children: [
-                  Expanded(
-                    child: RaisedButton(
-                      child: Text('Calculate'),
-                      onPressed: (){
-                        debugPrint('Calculate Button was pressed');
-                      }
-                      )
+                  getExpandedButtons('Calculate'),
+                  Container(
+                      width: _minimumPadding
                   ),
-                  Expanded(
-                      child: RaisedButton(
-                          child: Text('Reset'),
-                          onPressed: (){
-                            debugPrint('Reset Button was pressed');
-                          }
-                      )
-                  ),
-                ],
+                  getExpandedButtons('Reset')
+                 ]
               )
             ),
             Padding(
@@ -131,6 +127,17 @@ class _SIFormState extends State<SIForm>{
         child:(
             widget
         )
+    );
+  }
+
+  Expanded getExpandedButtons(String buttonText){
+    return Expanded(
+          child: RaisedButton(
+              child: Text(buttonText),
+              onPressed: (){
+                debugPrint('$buttonText Button was pressed');
+              }
+          )
     );
   }
 }
