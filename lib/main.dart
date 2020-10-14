@@ -52,58 +52,60 @@ class _SIFormState extends State<SIForm>{
       appBar: AppBar(
         title: Text('Simple Intereset Calculator')
       ),
-      body:Container(
-        margin:EdgeInsets.all(_minimumPadding*2),
-        child:ListView(
-          children: [
-            getImageAsset(),
-            getColumnChildWithPadding(
-               getTextField(_principalText, _principalHintText, _principalController)
-            ),
-            getColumnChildWithPadding(
-               getTextField(_roiText, _roiHintText, _roiController)
-            ),
-            getColumnChildWithPadding(
-              Row(
-                children: [
-                  Expanded(
-                    child: getTextField(_termText, _termHintText, _termController)
-                  ),
-                  Container(
-                    width: _minimumPadding * 5
-                  ),
-                  Expanded(
-                    child:DropdownButton(
-                      items: _currencies.map((value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value)
-                      );
-                      }).toList(),
-                      value: currencySelected,
-                      onChanged: (String newValueSelected){
-                        _onDropdownItemSelected(newValueSelected);
-                      })
-                  )
-                ],
+      body:Form(
+        child:Padding(
+          padding:EdgeInsets.all(_minimumPadding*2),
+          child:ListView(
+            children: [
+              getImageAsset(),
+              getColumnChildWithPadding(
+                 getTextField(_principalText, _principalHintText, _principalController)
+              ),
+              getColumnChildWithPadding(
+                 getTextField(_roiText, _roiHintText, _roiController)
+              ),
+              getColumnChildWithPadding(
+                Row(
+                  children: [
+                    Expanded(
+                      child: getTextField(_termText, _termHintText, _termController)
+                    ),
+                    Container(
+                      width: _minimumPadding * 5
+                    ),
+                    Expanded(
+                      child:DropdownButton(
+                        items: _currencies.map((value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value)
+                        );
+                        }).toList(),
+                        value: currencySelected,
+                        onChanged: (String newValueSelected){
+                          _onDropdownItemSelected(newValueSelected);
+                        })
+                    )
+                  ],
+                )
+              ),
+              getColumnChildWithPadding(
+                Row(
+                  children: [
+                    getExpandedButtons('Calculate', true),
+                    Container(
+                        width: _minimumPadding
+                    ),
+                    getExpandedButtons('Reset', false)
+                   ]
+                )
+              ),
+              Padding(
+                padding: EdgeInsets.all(_minimumPadding*2),
+                child: Text(this.calculationMessage),
               )
-            ),
-            getColumnChildWithPadding(
-              Row(
-                children: [
-                  getExpandedButtons('Calculate', true),
-                  Container(
-                      width: _minimumPadding
-                  ),
-                  getExpandedButtons('Reset', false)
-                 ]
-              )
-            ),
-            Padding(
-              padding: EdgeInsets.all(_minimumPadding*2),
-              child: Text(this.calculationMessage),
-            )
-          ]
+            ]
+          )
         )
 
       )
