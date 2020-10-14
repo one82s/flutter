@@ -121,13 +121,23 @@ class _SIFormState extends State<SIForm>{
 
   }
 
-  TextField getTextField(String labelText, String hintText, TextEditingController textController){
-    return   TextField(
+  TextFormField getTextField(String labelText, String hintText, TextEditingController textController){
+    return  TextFormField(
       keyboardType: TextInputType.number,
+      validator: (String value){
+        if(value.isEmpty){
+          return 'Please enter $labelText';
+        }
+        return '';
+      },
       controller: textController,
       decoration: InputDecoration(
         labelText: labelText,
         hintText: hintText,
+        errorStyle: TextStyle(
+          color: Colors.redAccent,
+          fontSize: 15.0
+        ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(_minimumPadding),
         ),
@@ -152,7 +162,9 @@ class _SIFormState extends State<SIForm>{
 //                debugPrint('$buttonText Button was pressed');
                 setState((){
                   if(isCalculate){
-                    this.calculationMessage = _calculateTotalAmount();
+                    if(_formKey.currentState.validate()){
+                      this.calculationMessage = _calculateTotalAmount();
+                    }
                   }
                   else{
                     _reset();
