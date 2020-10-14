@@ -25,6 +25,7 @@ class SIForm extends StatefulWidget{
 }
 
 class _SIFormState extends State<SIForm>{
+  var _formKey = GlobalKey<FormState>();
   var _currencies = ['Pesos', 'Dollars', 'Euros', 'Yen'];
   var currencySelected = '';
   final _minimumPadding = 5.0;
@@ -53,6 +54,7 @@ class _SIFormState extends State<SIForm>{
         title: Text('Simple Intereset Calculator')
       ),
       body:Form(
+        key:_formKey,
         child:Padding(
           padding:EdgeInsets.all(_minimumPadding*2),
           child:ListView(
