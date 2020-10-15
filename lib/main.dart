@@ -124,13 +124,8 @@ class _SIFormState extends State<SIForm>{
   TextFormField getTextField(String labelText, String hintText, TextEditingController textController){
     return  TextFormField(
       keyboardType: TextInputType.number,
-      validator: (String value){
-        if(value.isEmpty){
-          return 'Please enter $labelText';
-        }
-        return '';
-      },
       controller: textController,
+      validator: (String value)=>(value.isEmpty)?'Please enter $labelText':null,
       decoration: InputDecoration(
         labelText: labelText,
         hintText: hintText,
@@ -180,6 +175,7 @@ class _SIFormState extends State<SIForm>{
   }
 
   String _calculateTotalAmount (){
+      debugPrint('in _calculateTotalAmount');
       double principal = double.parse(_principalController.text);
       double roi = double.parse(_roiController.text);
       double term = double.parse(_termController.text);
