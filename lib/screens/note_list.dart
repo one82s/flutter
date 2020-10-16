@@ -22,12 +22,7 @@ class NoteListState extends State<NoteList>{
       FloatingActionButton(
         onPressed: (){
           debugPrint('FAB was pressed');
-          Navigator.push(context,
-              MaterialPageRoute(
-                  builder: (context){
-                    return NoteDetail();
-                  })
-          );
+          navigateToDetailPage(context);
         },
         tooltip: 'Add Note',
         child: Icon(Icons.add),
@@ -53,16 +48,20 @@ class NoteListState extends State<NoteList>{
             trailing: Icon(Icons.delete, color:Colors.grey),
             onTap: (){
                 debugPrint('list view was tapped');
-                Navigator.push(context,
-                    MaterialPageRoute(
-                        builder: (context){
-                          return NoteDetail();
-                        })
-                );
+                navigateToDetailPage(context);
             },
             )
           );
         }
+    );
+  }
+
+  void navigateToDetailPage(BuildContext context) {
+    Navigator.push(context,
+        MaterialPageRoute(
+            builder: (context){
+              return NoteDetail();
+            })
     );
   }
 }
