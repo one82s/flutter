@@ -48,7 +48,6 @@ class _SIFormState extends State<SIForm>{
 
   @override
   Widget build(BuildContext context) {
-    TextStyle textStyle = Theme.of(context).textTheme.headline6;
     return Scaffold(
       appBar: AppBar(
         title: Text('Simple Intereset Calculator')
@@ -67,40 +66,10 @@ class _SIFormState extends State<SIForm>{
                  getTextField(_roiText, _roiHintText, _roiController)
               ),
               getColumnChildWithPadding(
-                Row(
-                  children: [
-                    Expanded(
-                      child: getTextField(_termText, _termHintText, _termController)
-                    ),
-                    Container(
-                      width: _minimumPadding * 5
-                    ),
-                    Expanded(
-                      child:DropdownButton(
-                        items: _currencies.map((value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value)
-                        );
-                        }).toList(),
-                        value: currencySelected,
-                        onChanged: (String newValueSelected){
-                          _onDropdownItemSelected(newValueSelected);
-                        })
-                    )
-                  ],
-                )
+                buildTermRow()
               ),
               getColumnChildWithPadding(
-                Row(
-                  children: [
-                    getExpandedButtons('Calculate', true),
-                    Container(
-                        width: _minimumPadding
-                    ),
-                    getExpandedButtons('Reset', false)
-                   ]
-                )
+                buildButtonsRow()
               ),
               Padding(
                 padding: EdgeInsets.all(_minimumPadding*2),
@@ -112,6 +81,40 @@ class _SIFormState extends State<SIForm>{
 
       )
     );
+  }
+
+  Row buildButtonsRow() {
+    return Row(
+                children: [
+                  getExpandedButtons('Calculate', true),
+                  Container(width: _minimumPadding),
+                  getExpandedButtons('Reset', false)
+                 ]
+              );
+  }
+
+  Row buildTermRow() {
+    return Row(
+                children: [
+                  Expanded(
+                    child: getTextField(_termText, _termHintText, _termController)
+                  ),
+                  Container(width: _minimumPadding * 5),
+                  Expanded(
+                    child:DropdownButton(
+                      items: _currencies.map((value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value)
+                      );
+                      }).toList(),
+                      value: currencySelected,
+                      onChanged: (String newValueSelected){
+                        _onDropdownItemSelected(newValueSelected);
+                      })
+                  )
+                ],
+              );
   }
 
   Widget getImageAsset(){
