@@ -43,4 +43,38 @@ class DatabaseHelper{
     await db.execute('CREATE TABLE $noteTable($colId INTEGER PRIMARY KEY AUTOINCREMENT, '
         '$colTitle TEXT, $colDesc TEXT, $colPrio IINTEGER, $colDate TEXT)');
   }
+
+  Future<List<Map<String,dynamic>>> getData() async {
+    Database db = await this.database;
+    // native SQL query
+//    var result = await db.rawQuery('SELECT * FROM $noteTable ORDER BY $colPrio ASC');
+    // SQFlite query or helper fuction
+    var result = await db.query(noteTable, orderBy: '$colPrio');
+    return result;
+  }
+
+  Future<int> addNote(Note note) async {
+    Database db = await this.database;
+    var result = await db.insert(noteTable, note.toMap());
+    return result;
+  }
+
+  Future<int> updateNote(Note note) async {
+    Database db = await this.database;
+    var result = await db.update(noteTable, note.toMap(), where: '$colId = ?', whereArgs: [note.id]);
+    return result;
+  }
+
+  Future<int> deleteNote(Note note) async {
+    Database db = await this.database;
+    var result = await db.delete(noteTable, where: '$colId = ?', whereArgs: [note.id]);
+    return result;
+  }
+
+  Future<int> getNumberOfRecords() async {
+    Database db = await this.database;
+    List<Map<String,dynamic>> data = await db.query(noteTable);
+    int result = Sqflite.firstIntValue(data);
+    return result;
+  }
 }
