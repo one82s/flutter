@@ -1,20 +1,28 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
+import 'package:firstapp/models/note.dart';
+import 'package:firstapp/utils/database_helper.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:intl/intl.dart';
 
 class NoteDetail extends StatefulWidget {
-  String appBarTitle = '';
+  final String appBarTitle;
+  final Note note;
 
-  NoteDetail(this.appBarTitle);
+  NoteDetail(this.note, this.appBarTitle);
 
   @override
   State<StatefulWidget> createState() {
-    return NodeDetailState(this.appBarTitle);
+    return NodeDetailState(note, this.appBarTitle);
   }
 }
 
 class NodeDetailState extends State<NoteDetail> {
-  String appBarTitle = '';
+  DatabaseHelper databaseHelper = DatabaseHelper();
+  String appBarTitle;
+  Note note;
 
-  NodeDetailState(this.appBarTitle);
+  NodeDetailState(this.note, this.appBarTitle);
 
   var priorities = ['High', 'Medium', 'Low'];
   TextEditingController titleController = TextEditingController();
@@ -23,8 +31,11 @@ class NodeDetailState extends State<NoteDetail> {
   @override
   Widget build(BuildContext context) {
     TextStyle textStyle = Theme.of(context).textTheme.headline6;
+
+    titleController.text = note.title;
+    descriptionController.text = note.description;
     return WillPopScope(
-        onWillPop: (){
+        onWillPop: () {
           moveToLastScreen();
         },
         child: Scaffold(
@@ -32,7 +43,7 @@ class NodeDetailState extends State<NoteDetail> {
               title: Text(appBarTitle),
               leading: IconButton(
                 icon: Icon(Icons.arrow_back),
-                onPressed: (){
+                onPressed: () {
                   moveToLastScreen();
                 },
               ),
@@ -50,10 +61,11 @@ class NodeDetailState extends State<NoteDetail> {
                         );
                       }).toList(),
                       style: textStyle,
-                      value: 'Low',
+                      value: getPriorityAsString(note.priority),
                       onChanged: (selectedValue) {
                         setState(() {
                           debugPrint('User selected $selectedValue');
+                          updatePriorityAsInt(selectedValue);
                         });
                       },
                     ),
@@ -64,7 +76,8 @@ class NodeDetailState extends State<NoteDetail> {
                       controller: titleController,
                       style: textStyle,
                       onChanged: (textValue) {
-                        debugPrint('Title entered is $textValue');
+//                        debugPrint('Title entered is $textValue');
+                        updateTitle();
                       },
                       decoration: InputDecoration(
                         labelText: 'Title',
@@ -80,7 +93,8 @@ class NodeDetailState extends State<NoteDetail> {
                       controller: descriptionController,
                       style: textStyle,
                       onChanged: (textValue) {
-                        debugPrint('Description entered is $textValue');
+//                        debugPrint('Description entered is $textValue');
+                        updateDescription();
                       },
                       decoration: InputDecoration(
                         labelText: 'Description',
@@ -101,7 +115,8 @@ class NodeDetailState extends State<NoteDetail> {
                           child: Text('Save', textScaleFactor: 1.5),
                           onPressed: () {
                             setState(() {
-                              debugPrint('Save button was pressed');
+//                              debugPrint('Save button was pressed');
+                              saveNote();
                             });
                           },
                         )),
@@ -110,10 +125,11 @@ class NodeDetailState extends State<NoteDetail> {
                             child: RaisedButton(
                           color: Theme.of(context).primaryColorDark,
                           textColor: Theme.of(context).primaryColorLight,
-                          child: Text('Reset', textScaleFactor: 1.5),
+                          child: Text('Delete', textScaleFactor: 1.5),
                           onPressed: () {
                             setState(() {
                               debugPrint('Reset button was pressed');
+                              deleteNote();
                             });
                           },
                         ))
@@ -129,7 +145,90 @@ class NodeDetailState extends State<NoteDetail> {
     return null;
   }
 
-  void moveToLastScreen(){
-    Navigator.pop(context);
+  void moveToLastScreen() {
+    Navigator.pop(context, true);
+  }
+
+  void updatePriorityAsInt(String value) {
+    switch (value) {
+      case 'High':
+        note.priority = 1;
+        break;
+      case 'Medium':
+        note.priority = 2;
+        break;
+      case 'Low':
+        note.priority = 3;
+        break;
+      default:
+        break;
+    }
+  }
+
+  String getPriorityAsString(int value) {
+    String priority;
+    switch (value) {
+      case 1:
+        priority = priorities[0];
+        break;
+      case 2:
+        priority = priorities[1];
+        break;
+      case 3:
+        priority = priorities[2];
+        break;
+      default:
+        break;
+    }
+    return priority;
+  }
+
+  void updateTitle() {
+    note.title = titleController.text;
+  }
+
+  void updateDescription() {
+    note.description = descriptionController.text;
+  }
+
+  void saveNote() async {
+    moveToLastScreen();
+    note.date = DateFormat.yMMMd().format(DateTime.now());
+    int result;
+    if (note.id != null) {
+      result = await databaseHelper.updateNote(note);
+    } else {
+      result = await databaseHelper.addNote(note);
+    }
+
+    if (result != 0) {
+      showAlertDialog('Status', 'Note saved successgully!');
+    } else {
+      showAlertDialog('Status', 'Problem saving note');
+    }
+  }
+
+  void deleteNote() async {
+    moveToLastScreen();
+
+    if (note.id == null) {
+      showAlertDialog('Status', 'No Note deleted');
+      return;
+    }
+
+    int result = await databaseHelper.deleteNote(note);
+    if (result != 0) {
+      showAlertDialog('Status', 'Note deleted successgully!');
+    } else {
+      showAlertDialog('Status', 'Problem deleting note');
+    }
+  }
+
+  void showAlertDialog(String title, String message) {
+    AlertDialog alertDialog = AlertDialog(
+      title: Text(title),
+      content: Text(message),
+    );
+    showDialog(context: context, builder: (_) => alertDialog);
   }
 }
