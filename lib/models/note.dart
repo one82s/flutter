@@ -36,7 +36,7 @@ class Note {
 
   set title(String value) {
     if (value.length <= 255) {
-      title = value;
+      _title = value;
     }
   }
 

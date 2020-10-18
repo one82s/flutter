@@ -30,7 +30,7 @@ class NoteListState extends State<NoteList> {
       body: getNoteListView(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          debugPrint('FAB was pressed');
+//          debugPrint('FAB was pressed');
           navigateToDetailPage(Note('', '', 2), 'Add Note');
         },
         tooltip: 'Add Note',
