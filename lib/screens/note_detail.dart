@@ -18,6 +18,8 @@ class NoteDetail extends StatefulWidget {
 }
 
 class NodeDetailState extends State<NoteDetail> {
+  var _formKey = GlobalKey<FormState>();
+  String titleValidatorString  = '';
   DatabaseHelper databaseHelper = DatabaseHelper();
   String appBarTitle;
   Note note;
@@ -48,7 +50,8 @@ class NodeDetailState extends State<NoteDetail> {
                 },
               ),
             ),
-            body: Padding(
+            body: Form(
+              child: Padding(
               padding: EdgeInsets.only(top: 15.0, left: 10.0, right: 10.0),
               child: ListView(
                 children: [
@@ -72,7 +75,14 @@ class NodeDetailState extends State<NoteDetail> {
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
-                    child: TextField(
+                    child: TextFormField(
+                      validator: (String value){
+                        if(value.isEmpty){
+                          titleValidatorString = 'Please enter Title';
+                          return titleValidatorString;
+                        }
+                        return titleValidatorString;
+                      },
                       controller: titleController,
                       style: textStyle,
                       onChanged: (textValue) {
@@ -82,6 +92,7 @@ class NodeDetailState extends State<NoteDetail> {
                       decoration: InputDecoration(
                         labelText: 'Title',
                         labelStyle: textStyle,
+                        hintText: 'Enter Title here',
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(5.0)),
                       ),
@@ -89,7 +100,7 @@ class NodeDetailState extends State<NoteDetail> {
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
-                    child: TextField(
+                    child: TextFormField(
                       controller: descriptionController,
                       style: textStyle,
                       onChanged: (textValue) {
@@ -99,6 +110,7 @@ class NodeDetailState extends State<NoteDetail> {
                       decoration: InputDecoration(
                         labelText: 'Description',
                         labelStyle: textStyle,
+                        hintText: 'Enter Description here',
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(5.0)),
                       ),
@@ -138,7 +150,7 @@ class NodeDetailState extends State<NoteDetail> {
                   )
                 ],
               ),
-            )));
+            ))));
   }
 
   Widget getNoteDetailView() {
@@ -194,11 +206,13 @@ class NodeDetailState extends State<NoteDetail> {
   void saveNote() async {
     moveToLastScreen();
     note.date = DateFormat.yMMMd().format(DateTime.now());
-    int result;
-    if (note.id != null) {
-      result = await databaseHelper.updateNote(note);
-    } else {
-      result = await databaseHelper.addNote(note);
+    int result = 0;
+    if(titleValidatorString.isNotEmpty){
+      if (note.id != null) {
+        result = await databaseHelper.updateNote(note);
+      } else {
+        result = await databaseHelper.addNote(note);
+      }
     }
 
     if (result != 0) {
