@@ -30,6 +30,10 @@ class NodeDetailState extends State<NoteDetail> {
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
 
+  static const paddingTopBottom = 15.0;
+  static const paddingLeftRight = 10.0;
+
+
   @override
   Widget build(BuildContext context) {
     TextStyle textStyle = Theme.of(context).textTheme.headline6;
@@ -51,8 +55,9 @@ class NodeDetailState extends State<NoteDetail> {
               ),
             ),
             body: Form(
+              key:_formKey,
               child: Padding(
-              padding: EdgeInsets.only(top: 15.0, left: 10.0, right: 10.0),
+              padding: EdgeInsets.only(top: paddingTopBottom, left:paddingLeftRight, right: paddingLeftRight),
               child: ListView(
                 children: [
                   ListTile(
@@ -73,51 +78,10 @@ class NodeDetailState extends State<NoteDetail> {
                       },
                     ),
                   ),
+                  buildTextFormField('Title', textStyle),
+                  buildTextFormField('Description', textStyle),
                   Padding(
-                    padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
-                    child: TextFormField(
-                      validator: (String value){
-                        if(value.isEmpty){
-                          titleValidatorString = 'Please enter Title';
-                          return titleValidatorString;
-                        }
-                        return titleValidatorString;
-                      },
-                      controller: titleController,
-                      style: textStyle,
-                      onChanged: (textValue) {
-//                        debugPrint('Title entered is $textValue');
-                        updateTitle();
-                      },
-                      decoration: InputDecoration(
-                        labelText: 'Title',
-                        labelStyle: textStyle,
-                        hintText: 'Enter Title here',
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5.0)),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
-                    child: TextFormField(
-                      controller: descriptionController,
-                      style: textStyle,
-                      onChanged: (textValue) {
-//                        debugPrint('Description entered is $textValue');
-                        updateDescription();
-                      },
-                      decoration: InputDecoration(
-                        labelText: 'Description',
-                        labelStyle: textStyle,
-                        hintText: 'Enter Description here',
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5.0)),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
+                    padding: EdgeInsets.only(top: paddingTopBottom, bottom: paddingTopBottom),
                     child: Row(
                       children: [
                         Expanded(
@@ -140,7 +104,7 @@ class NodeDetailState extends State<NoteDetail> {
                           child: Text('Delete', textScaleFactor: 1.5),
                           onPressed: () {
                             setState(() {
-                              debugPrint('Reset button was pressed');
+//                              debugPrint('Reset button was pressed');
                               deleteNote();
                             });
                           },
@@ -153,8 +117,41 @@ class NodeDetailState extends State<NoteDetail> {
             ))));
   }
 
-  Widget getNoteDetailView() {
-    return null;
+
+  Widget buildTextFormField(String fieldName, TextStyle textStyle) {
+    bool isTitle = fieldName == 'Title' ? true : false;
+    return Padding(
+      padding: EdgeInsets.only(top: paddingTopBottom, bottom: paddingTopBottom),
+      child: TextFormField(
+        validator: (String value){
+          if(value.isEmpty && isTitle){
+           return 'Please enter Title';
+          }
+          return null;
+        },
+        controller: isTitle ? titleController : descriptionController,
+        style: textStyle,
+        onChanged: (textValue) {
+          if(isTitle){
+            updateTitle();
+          }
+          else{
+            updateDescription();
+          }
+        },
+        decoration: InputDecoration(
+          labelText: fieldName,
+          labelStyle: textStyle,
+          hintText: 'Enter $fieldName here',
+          errorStyle: TextStyle(
+              color: isTitle? Colors.redAccent : Colors.transparent,
+              fontSize: 15.0
+          ),
+          border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(5.0)),
+        ),
+      ),
+    );
   }
 
   void moveToLastScreen() {
@@ -204,21 +201,22 @@ class NodeDetailState extends State<NoteDetail> {
   }
 
   void saveNote() async {
-    moveToLastScreen();
-    note.date = DateFormat.yMMMd().format(DateTime.now());
-    int result = 0;
-    if(titleValidatorString.isNotEmpty){
-      if (note.id != null) {
+    if(_formKey.currentState.validate()){
+
+      moveToLastScreen();
+      note.date = DateFormat.yMMMd().format(DateTime.now());
+      int result;
+      if (note.id != null ) {
         result = await databaseHelper.updateNote(note);
       } else {
         result = await databaseHelper.addNote(note);
       }
-    }
 
-    if (result != 0) {
-      showAlertDialog('Status', 'Note saved successgully!');
-    } else {
-      showAlertDialog('Status', 'Problem saving note');
+      if (result != 0) {
+        showAlertDialog('Status', 'Note saved successfully!');
+      } else {
+        showAlertDialog('Status', 'Problem saving note');
+      }
     }
   }
 
