@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:firstapp/screens/note_detail.dart';
 import 'package:firstapp/models/note.dart';
 import 'package:firstapp/utils/database_helper.dart';
+import 'package:firstapp/utils/alert_message.dart';
 import 'package:sqflite/sqflite.dart';
 
 class NoteList extends StatefulWidget {
@@ -104,12 +105,20 @@ class NoteListState extends State<NoteList> {
   }
 
   void deleteNote(BuildContext context, Note note) async {
-    int deleted = await databaseHelper.deleteNote(note);
-    if (deleted != 0) {
-      showSnackBar(context, 'Note deleted sucessfully!');
-      updateNoteListView();
+    AlertMessage alertMessage =  AlertMessage();
+    bool isDelete = await alertMessage.showNoticeDialog(context, 'Notice', 'Are you sure you want to delete this note?');
+////    debugPrint('isDelete: $isDelete');
+    if(isDelete){
+//      debugPrint('in if isDelete');
+      int deleted = await databaseHelper.deleteNote(note);
+      if (deleted != 0) {
+        showSnackBar(context, 'Note deleted sucessfully!');
+        updateNoteListView();
+      }
     }
   }
+
+
 
   void showSnackBar(BuildContext context, String message) {
     final snackbar = SnackBar(content: Text(message));

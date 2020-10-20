@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:firstapp/models/note.dart';
 import 'package:firstapp/utils/database_helper.dart';
+import 'package:firstapp/utils/alert_message.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:intl/intl.dart';
 
@@ -221,18 +222,22 @@ class NodeDetailState extends State<NoteDetail> {
   }
 
   void deleteNote() async {
-    moveToLastScreen();
+    AlertMessage alertMessage =  AlertMessage();
+    bool isDelete = await alertMessage.showNoticeDialog(context, 'Notice', 'Are you sure you want to delete this note?');
+    if(isDelete){
+      moveToLastScreen();
 
-    if (note.id == null) {
-      showAlertDialog('Status', 'No Note deleted');
-      return;
-    }
+      if (note.id == null) {
+        showAlertDialog('Status', 'No Note deleted');
+        return;
+      }
 
-    int result = await databaseHelper.deleteNote(note);
-    if (result != 0) {
-      showAlertDialog('Status', 'Note deleted successgully!');
-    } else {
-      showAlertDialog('Status', 'Problem deleting note');
+      int result = await databaseHelper.deleteNote(note);
+      if (result != 0) {
+        showAlertDialog('Status', 'Note deleted successfully!');
+      } else {
+        showAlertDialog('Status', 'Problem deleting note');
+      }
     }
   }
 
@@ -240,6 +245,7 @@ class NodeDetailState extends State<NoteDetail> {
     AlertDialog alertDialog = AlertDialog(
       title: Text(title),
       content: Text(message),
+
     );
     showDialog(context: context, builder: (_) => alertDialog);
   }
