@@ -1,5 +1,6 @@
 import 'package:firstapp/src/utils/commons.dart';
 import 'package:flutter/material.dart';
+import 'package:firstapp/src/widgets/custom_text.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -19,12 +20,11 @@ class _HomeState extends State<Home> {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text("What do you desire?",
-                    style: TextStyle(
-                        fontSize: 18.0,
-                        color: white
-                    ),
-                  ),
+                  child: CustomText(
+                      text:"What do you desire?",
+                      size: 18.0,
+                      color: white
+                  )
                 ),
                 Stack(
                   children: [
