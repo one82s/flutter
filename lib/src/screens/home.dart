@@ -60,7 +60,6 @@ class _HomeState extends State<Home> {
                       offset: Offset(1,1),
                       blurRadius:4
                     )
-
                   ]
                 ),
                 child: ListTile(
@@ -79,6 +78,45 @@ class _HomeState extends State<Home> {
                   trailing: Icon(Icons.filter_list, color: red),
 
                 ),
+              ),
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            Container(
+              height: 120,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: 4,
+                itemBuilder:(_, index){
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        Container(
+                            decoration: BoxDecoration(
+                                color: red,
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: red[50],
+                                      offset: Offset(4,6),
+                                      blurRadius:20
+                                  )
+                                ]
+                            ),
+                            child:Padding(
+                                padding: const EdgeInsets.all(4.0),
+                                child: Image.asset("images/beef_kebab.jpg", width: 60,)
+                            )
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        CustomText(text: "Beef", size: 14, color: white,)
+                      ],
+                    ),
+                  );
+                }
               ),
             )
 
