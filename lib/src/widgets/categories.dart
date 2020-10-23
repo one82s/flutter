@@ -4,7 +4,13 @@ import 'package:flutter/material.dart';
 
 import 'custom_text.dart';
 
-List<Category> categoryList = [Category(name: "Beef", image: "beef_kebab.jpg"), Category(name: "Mix", image: "deli_duo.jpg")];
+List<Category> categoryList = [
+  Category(name: "Beef", image: "beef_kebab.jpg"),
+  Category(name: "Chicken", image: "nasi_goren_ayam.jpg"),
+  Category(name: "Combination", image: "deli_duo.jpg"),
+  Category(name: "Rice Meals", image: "nasi_goren_telur.jpg"),
+  Category(name: "Add-ons", image: "add_ons.jpg"),
+  ];
 
 class Categories extends StatelessWidget {
   @override
@@ -13,7 +19,7 @@ class Categories extends StatelessWidget {
       height: 120,
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
-          itemCount: 2,
+          itemCount: categoryList.length,
           itemBuilder:(_, index){
             return Padding(
               padding: const EdgeInsets.all(8.0),
@@ -21,7 +27,7 @@ class Categories extends StatelessWidget {
                 children: [
                   Container(
                       decoration: BoxDecoration(
-                          color: red,
+                          color: grey,
                           boxShadow: [
                             BoxShadow(
                                 color: red[50],
@@ -32,7 +38,7 @@ class Categories extends StatelessWidget {
                       ),
                       child:Padding(
                           padding: const EdgeInsets.all(4.0),
-                          child: Image.asset("images/${categoryList[index].image}", width: 60,)
+                          child: Image.asset("images/${categoryList[index].image}", height:60, width: 60,)
                       )
                   ),
                   SizedBox(
