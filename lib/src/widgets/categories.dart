@@ -27,18 +27,18 @@ class Categories extends StatelessWidget {
                 children: [
                   Container(
                       decoration: BoxDecoration(
-                          color: grey,
+                          color: lighter_white,
                           boxShadow: [
                             BoxShadow(
                                 color: red[50],
                                 offset: Offset(4,6),
                                 blurRadius:20
                             )
-                          ]
+                          ],
                       ),
                       child:Padding(
                           padding: const EdgeInsets.all(4.0),
-                          child: Image.asset("images/${categoryList[index].image}", height:60, width: 60,)
+                          child: Image.asset("images/${categoryList[index].image}", height:70, width: 70,)
                       )
                   ),
                   SizedBox(
