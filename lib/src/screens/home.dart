@@ -142,6 +142,7 @@ class _HomeState extends State<Home> {
       ),
 
       bottomNavigationBar: Container(
+        height: 70.0,
         color: red,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -150,15 +151,33 @@ class _HomeState extends State<Home> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Icon(Icons.home, color: white),
+                child: Column(
+                  children: [
+                    Icon(Icons.home, color: white, size: 20.0,),
+                    SizedBox(height: 2),
+                    CustomText(text:'Home', color: white)
+                  ],
+                )
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Icon(Icons.shopping_cart, color: white),
+                child: Column(
+                  children:[
+                    Icon(Icons.shopping_cart, color: white, size: 20.0,),
+                    SizedBox(height: 2),
+                    CustomText(text:'Cart', color: white)
+                  ]
+                )
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Icon(Icons.account_box, color: white),
+                child:  Column(
+                    children:[
+                      Icon(Icons.account_box, color: white, size: 20.0),
+                      SizedBox(height: 2),
+                      CustomText(text:'Account', color: white)
+                    ]
+                )
               )
             ],
           ),
