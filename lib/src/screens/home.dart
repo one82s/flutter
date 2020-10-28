@@ -133,6 +133,32 @@ class _HomeState extends State<Home> {
                         )
                       ],
                     ),
+                  ),
+                  Positioned.fill(
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(20.0), bottomRight: Radius.circular(20.0)
+                            ),
+                           gradient: LinearGradient(
+                             begin: Alignment.bottomCenter,
+                             end: Alignment.topCenter,
+                             colors: [
+                               Colors.black.withOpacity(0.7),
+                               Colors.black.withOpacity(0.6),
+                               Colors.black.withOpacity(0.5),
+                               Colors.black.withOpacity(0.3),
+                               Colors.black.withOpacity(0.1),
+                               Colors.black.withOpacity(0.05),
+                               Colors.black.withOpacity(0.025),
+                             ]
+
+                          )
+                          ),
+                        ),
+                      )
                   )
                 ],
               ),
