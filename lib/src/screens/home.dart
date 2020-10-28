@@ -1,6 +1,7 @@
 import 'package:firstapp/src/utils/commons.dart';
 import 'package:firstapp/src/widgets/best_seller.dart';
 import 'package:firstapp/src/widgets/categories.dart';
+import 'package:firstapp/src/widgets/small_button.dart';
 import 'package:flutter/material.dart';
 import 'package:firstapp/src/widgets/custom_text.dart';
 
@@ -93,11 +94,46 @@ class _HomeState extends State<Home> {
               padding: const EdgeInsets.all(8.0),
               child: CustomText(text: 'Best Seller', size: 20.0, color: white,),
             ),
-            BestSeller()
+            BestSeller(),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: CustomText(text: 'Popular', size: 20.0, color: white,),
+            ),
+            Stack(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20.0),
+                      child: Image.asset('images/beef_kebab.jpg')),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SmallButton(Icons.favorite),
+//                      Padding(
+//                        padding: const EdgeInsets.all(8.0),
+//                        child: Icon(Icons.favorite, color:red),
+//                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
           ],
         ),
-      )
+      ),
 
+//      bottomNavigationBar: Container(
+//        color: white,
+//        child: Row(
+//          children: [
+//
+//          ],
+//        ),
+//      ),
     );
   }
 }
