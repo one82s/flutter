@@ -22,31 +22,25 @@ class _HomeState extends State<Home> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: CustomText(
-                      text:"What do you desire?",
-                      size: 18.0,
-                      color: white
-                  )
-                ),
+                    padding: const EdgeInsets.all(8.0),
+                    child: CustomText(
+                        text: "What do you desire?", size: 18.0, color: white)),
                 Stack(
                   children: [
                     IconButton(
-                      icon:Icon(Icons.notifications_none, color: white),
-                      onPressed: (){},
+                      icon: Icon(Icons.notifications_none, color: white),
+                      onPressed: () {},
                     ),
                     Positioned(
                         top: 12,
                         right: 12,
                         child: Container(
-                          height:10.0,
+                          height: 10.0,
                           width: 10.0,
                           decoration: BoxDecoration(
                               color: grey,
-                              borderRadius: BorderRadius.circular(20.0)
-                          ),
-                        )
-                    )
+                              borderRadius: BorderRadius.circular(20.0)),
+                        ))
                   ],
                 )
               ],
@@ -55,31 +49,20 @@ class _HomeState extends State<Home> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
-                decoration: BoxDecoration(
-                  color: white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: grey[300],
-                      offset: Offset(1,1),
-                      blurRadius:4
-                    )
-                  ]
-                ),
+                decoration: BoxDecoration(color: white, boxShadow: [
+                  BoxShadow(
+                      color: grey[300], offset: Offset(1, 1), blurRadius: 4)
+                ]),
                 child: ListTile(
                   leading: Icon(Icons.search, color: red),
                   title: TextField(
                     decoration: InputDecoration(
                       hintText: "Seach your cravings",
                       border: InputBorder.none,
-                      hintStyle:   TextStyle(
-                          fontSize: 14.0,
-                          color: grey
-                      ),
-
+                      hintStyle: TextStyle(fontSize: 14.0, color: grey),
                     ),
                   ),
                   trailing: Icon(Icons.filter_list, color: red),
-
                 ),
               ),
             ),
@@ -92,48 +75,95 @@ class _HomeState extends State<Home> {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: CustomText(text: 'Best Seller', size: 20.0, color: white,),
+              child: CustomText(
+                text: 'Best Seller',
+                size: 20.0,
+                color: white,
+              ),
             ),
             BestSeller(),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: CustomText(text: 'Popular', size: 20.0, color: white,),
+              child: CustomText(
+                text: 'Most Popular',
+                size: 20.0,
+                color: white,
+              ),
             ),
-            Stack(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20.0),
-                      child: Image.asset('images/beef_kebab.jpg')),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SmallButton(Icons.favorite),
-//                      Padding(
-//                        padding: const EdgeInsets.all(8.0),
-//                        child: Icon(Icons.favorite, color:red),
-//                      )
-                    ],
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Stack(
+                children: [
+                  Container(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.circular(20.0),
+                          child: Image.asset('images/beef_kebab.jpg')),
+                    ),
                   ),
-                )
-              ],
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SmallButton(Icons.favorite),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: Container(
+                              width: 50,
+                              decoration: BoxDecoration(
+                                color: white,
+                                borderRadius: BorderRadius.circular(5.0),
+                              ),
+                              child: Row(
+                                //                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(2.0),
+                                    child: Icon(
+                                      Icons.star,
+                                      color: yellow[900],
+                                      size: 20,
+                                    ),
+                                  ),
+                                  Text('4.7')
+                                ],
+                              )),
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
           ],
         ),
       ),
 
-//      bottomNavigationBar: Container(
-//        color: white,
-//        child: Row(
-//          children: [
-//
-//          ],
-//        ),
-//      ),
+      bottomNavigationBar: Container(
+        color: red,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Icon(Icons.home, color: white),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Icon(Icons.shopping_cart, color: white),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Icon(Icons.account_box, color: white),
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
