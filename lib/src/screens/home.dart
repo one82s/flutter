@@ -118,7 +118,6 @@ class _HomeState extends State<Home> {
                                 borderRadius: BorderRadius.circular(5.0),
                               ),
                               child: Row(
-                                //                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.all(2.0),
@@ -175,7 +174,7 @@ class _HomeState extends State<Home> {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               BottomNavigation(icon: Icons.home, name:'Home'),
               BottomNavigation(icon: Icons.shopping_cart, name:'Cart'),
