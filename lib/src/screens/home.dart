@@ -1,5 +1,6 @@
 import 'package:firstapp/src/utils/commons.dart';
 import 'package:firstapp/src/widgets/best_seller.dart';
+import 'package:firstapp/src/widgets/bottom_navigation.dart';
 import 'package:firstapp/src/widgets/categories.dart';
 import 'package:firstapp/src/widgets/small_button.dart';
 import 'package:flutter/material.dart';
@@ -176,36 +177,9 @@ class _HomeState extends State<Home> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: [
-                    Icon(Icons.home, color: white, size: 20.0,),
-                    SizedBox(height: 2),
-                    CustomText(text:'Home', color: white)
-                  ],
-                )
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children:[
-                    Icon(Icons.shopping_cart, color: white, size: 20.0,),
-                    SizedBox(height: 2),
-                    CustomText(text:'Cart', color: white)
-                  ]
-                )
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child:  Column(
-                    children:[
-                      Icon(Icons.account_box, color: white, size: 20.0),
-                      SizedBox(height: 2),
-                      CustomText(text:'Account', color: white)
-                    ]
-                )
-              )
+              BottomNavigation(icon: Icons.home, name:'Home'),
+              BottomNavigation(icon: Icons.shopping_cart, name:'Cart'),
+              BottomNavigation(icon: Icons.account_box, name:'Account')
             ],
           ),
         ),
