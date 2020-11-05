@@ -108,7 +108,7 @@ class _HomeState extends State<Home> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        SmallButton(Icons.favorite),
+                        SmallButton(Icons.favorite, white, red),
                         Padding(
                           padding: const EdgeInsets.only(right: 8.0),
                           child: Container(

@@ -1,6 +1,7 @@
 import 'package:firstapp/src/models/product.dart';
 import 'package:firstapp/src/utils/commons.dart';
 import 'package:firstapp/src/widgets/custom_text.dart';
+import 'package:firstapp/src/widgets/small_button.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 
@@ -82,6 +83,11 @@ class _DetailState extends State<Detail> {
                         )
                       )
                     ],
+                  ),
+                  Positioned(
+                    right: 10.0,
+                    bottom: 60.0,
+                    child: SmallButton(Icons.favorite, white, red)
                   ),
                 ],
               ),
