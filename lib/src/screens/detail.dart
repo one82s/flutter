@@ -91,9 +91,18 @@ class _DetailState extends State<Detail> {
                   ),
                 ],
               ),
-            )
-//            IconButton(icon: Icon(Icons.arrow_back_ios),onPressed: (){Navigator.pop(context);}, color: white,),
-//            Text(widget.product.name, style: TextStyle(color: white))
+            ),
+            //
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CustomText(text: widget.product.name, color: white, size: 22, weight: FontWeight.bold),
+                  CustomText(text: "Php "+widget.product.price.toString(), color: white, size: 18, weight: FontWeight.w600),
+                ],
+              ),
+            ),
           ],
         ),
       ),
