@@ -99,10 +99,34 @@ class _DetailState extends State<Detail> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   CustomText(text: widget.product.name, color: white, size: 22, weight: FontWeight.bold),
-                  CustomText(text: "Php "+widget.product.price.toString(), color: white, size: 18, weight: FontWeight.w600),
+                  CustomText(text: "P "+widget.product.price.toString(), color: white, size: 18, weight: FontWeight.w600),
                 ],
               ),
             ),
+            SizedBox(height: 15.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: IconButton(icon: Icon(Icons.remove, color: white), onPressed: null),
+                ),
+                GestureDetector(
+                  onTap: (){},
+                  child: Container(
+                      decoration: BoxDecoration(color: white),
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(20,10,20,10),
+                        child: CustomText(text: "Add to Cart", color: red, size: 22, weight: FontWeight.w600,),
+                      )
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: IconButton(icon: Icon(Icons.add, color: white), onPressed: null),
+                ),
+              ],
+            )
           ],
         ),
       ),
