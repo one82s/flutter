@@ -14,6 +14,7 @@ class Detail extends StatefulWidget {
 }
 
 class _DetailState extends State<Detail> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +22,6 @@ class _DetailState extends State<Detail> {
       body: SafeArea(
         child: Column(
           children: [
-//            Image.asset(widget.product.image)
             Container(
               height: 300.0,
               child: Stack(
@@ -44,17 +44,23 @@ class _DetailState extends State<Detail> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      IconButton(icon: Icon(Icons.arrow_back_ios),onPressed: (){Navigator.pop(context);}, color: white),
+                      IconButton(icon: Icon(Icons.arrow_back),onPressed: (){Navigator.pop(context);}, color: white),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.only(right: 8.0),
                         child: Stack(
                             children: [
-                              Icon(Icons.shopping_cart, color: white, size: 30.0),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Stack(
+                                  children: [
+                                    Icon(Icons.shopping_cart, color: white, size: 30.0),
+                                  ],
+                                ),
+                              ),
                               Positioned(
-                                right: 3.0,
-                                top: 1.0,
+                                right: 5.0,
+                                top: 10.0,
                                 child: Container(
-                                    width: 18.0,
                                     decoration: BoxDecoration(
                                       color: red,
                                       borderRadius: BorderRadius.circular(10.0),
@@ -67,8 +73,8 @@ class _DetailState extends State<Detail> {
                                       ]
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.only(left: 4.0, top: 2.0),
-                                      child: CustomText(text: "2", color: white, size: 10, weight: FontWeight.bold,),
+                                      padding: const EdgeInsets.only(left: 4.0, right: 4.0),
+                                      child: CustomText(text: "99", color: white, size: 10, weight: FontWeight.bold,),
                                     )
                                 ),
                               )
