@@ -5,9 +5,10 @@ class CustomText extends StatelessWidget {
   final double size;
   final Color color;
   final FontWeight weight;
+  final FontStyle style;
 
 
-  CustomText({@required this.text, this.size, this.color, this.weight});
+  CustomText({@required this.text, this.size, this.color, this.weight, this.style});
 
   @override
   Widget build(BuildContext context) {

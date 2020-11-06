@@ -1,10 +1,13 @@
 import 'package:firstapp/src/utils/commons.dart';
+import 'package:firstapp/src/utils/screen_navigation.dart';
 import 'package:firstapp/src/widgets/best_seller.dart';
 import 'package:firstapp/src/widgets/bottom_navigation.dart';
 import 'package:firstapp/src/widgets/categories.dart';
 import 'package:firstapp/src/widgets/small_button.dart';
 import 'package:flutter/material.dart';
 import 'package:firstapp/src/widgets/custom_text.dart';
+
+import 'cart.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -177,7 +180,13 @@ class _HomeState extends State<Home> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               BottomNavigation(icon: Icons.home, name:'Home'),
-              BottomNavigation(icon: Icons.shopping_cart, name:'Cart'),
+              BottomNavigation(
+                onTap: (){
+                  changeScreen(context, ShoppingCart());
+                },
+                icon: Icons.shopping_cart,
+                name:'Cart'
+              ),
               BottomNavigation(icon: Icons.account_box, name:'Account')
             ],
           ),

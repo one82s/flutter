@@ -21,7 +21,7 @@ class _DetailState extends State<Detail> {
     return Scaffold(
       backgroundColor: red,
       body: SafeArea(
-        child: Column(
+        child: ListView(
           children: [
             Container(
               height: 300.0,
@@ -126,7 +126,15 @@ class _DetailState extends State<Detail> {
                   child: IconButton(icon: Icon(Icons.add, color: white), onPressed: null),
                 ),
               ],
-            )
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: CustomText(text: "Details", color: white, size: 20, weight: FontWeight.bold,),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: CustomText(text: widget.product.details, color: white, size: 16, style: FontStyle.italic),
+            ),
           ],
         ),
       ),

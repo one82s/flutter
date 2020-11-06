@@ -7,9 +7,10 @@ import 'package:flutter/material.dart';
 import 'custom_text.dart';
 
 List<Product> productList = [
-  Product(name: 'Bravo Beef Kebab', image: 'images/beef_kebab.jpg',rating: 4.7, price: 149.0, wishList: true),
-  Product(name: 'Nasi Goreng Ayam Telur', image: 'images/nasi_goren_ayam_telur.jpg',rating: 4.7, price: 159.0, wishList: true),
-  Product(name: 'Deli Duo', image: 'images/deli_duo.jpg',rating: 4.7, price: 269.0, wishList: true),
+  Product(name: 'Bravo Beef Kebab', image: 'images/beef_kebab.jpg', details: 'Beef Kebab is the best kebab',rating: 4.7, price: 149.0, wishList: true),
+  Product(name: 'Nasi Goreng Ayam Telur', image: 'images/nasi_goren_ayam_telur.jpg', details: 'Nasi Goreng Ayam Telur is an authentic Asian cuisine'
+      ,rating: 4.7, price: 159.0, wishList: true),
+  Product(name: 'Deli Duo', image: 'images/deli_duo.jpg', details: 'Deli Duo is the best of both worlds',rating: 4.7, price: 269.0, wishList: true),
 
 ];
 class BestSeller extends StatelessWidget {
