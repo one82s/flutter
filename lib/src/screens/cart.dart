@@ -1,3 +1,4 @@
+import 'package:firstapp/src/models/product.dart';
 import 'package:firstapp/src/utils/commons.dart';
 import 'package:firstapp/src/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,13 @@ class ShoppingCart extends StatefulWidget {
 }
 
 class _ShoppingCartState extends State<ShoppingCart> {
+  List<Product> productList = [
+    Product(name: 'Bravo Beef Kebab', image: 'images/beef_kebab.jpg', details: 'Beef Kebab is the best kebab',rating: 4.7, price: 149.0, wishList: true),
+    Product(name: 'Nasi Goreng Ayam Telur', image: 'images/nasi_goren_ayam_telur.jpg', details: 'Nasi Goreng Ayam Telur is an authentic Asian cuisine'
+        ,rating: 4.7, price: 159.0, wishList: true),
+    Product(name: 'Deli Duo', image: 'images/deli_duo.jpg', details: 'Deli Duo is the best of both worlds',rating: 4.7, price: 269.0, wishList: true),
+
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,6 +62,31 @@ class _ShoppingCartState extends State<ShoppingCart> {
               ],
             ),
           ),
+        ],
+      ),
+      body: ListView(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              height: 120,
+              decoration: BoxDecoration(
+                color: red,
+                boxShadow: [
+                  BoxShadow(
+                    color: white,
+                    offset: Offset(3,3),
+                    blurRadius: 5
+                  )
+                ]
+              ),
+              child: Row(
+                children: [
+                  Text('This is a test'),
+                ],
+              ),
+            ),
+          )
         ],
       ),
     );
