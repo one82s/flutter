@@ -1,3 +1,4 @@
+import 'package:firstapp/src/screens/login.dart';
 import 'package:firstapp/src/utils/commons.dart';
 import 'package:firstapp/src/utils/screen_navigation.dart';
 import 'package:firstapp/src/widgets/best_seller.dart';
@@ -187,7 +188,11 @@ class _HomeState extends State<Home> {
                 icon: Icons.shopping_cart,
                 name:'Cart'
               ),
-              BottomNavigation(icon: Icons.account_box, name:'Account')
+              BottomNavigation(
+                  onTap: (){
+                    changeScreen(context, Login());
+                  },
+                  icon: Icons.account_box, name:'Account')
             ],
           ),
         ),
