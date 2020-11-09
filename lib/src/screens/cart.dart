@@ -64,30 +64,48 @@ class _ShoppingCartState extends State<ShoppingCart> {
           ),
         ],
       ),
-      body: ListView(
-        children: [
-          Padding(
+      body: ListView.builder(
+        itemCount: productList.length,
+        itemBuilder: (_, index){
+          return Padding(
             padding: const EdgeInsets.all(8.0),
             child: Container(
               height: 120,
               decoration: BoxDecoration(
-                color: red,
-                boxShadow: [
-                  BoxShadow(
-                    color: white,
-                    offset: Offset(3,3),
-                    blurRadius: 5
-                  )
-                ]
+                  color: red,
+                  boxShadow: [
+                    BoxShadow(
+                        color: white,
+                        offset: Offset(3,5),
+                        blurRadius: 40
+                    )
+                  ]
               ),
               child: Row(
                 children: [
-                  Text('This is a test'),
+                  Padding(
+                    padding: const EdgeInsets.only(left:5.0, right: 5.0),
+                    child: Image.asset(productList[index].image, height:100.0, width:120.0),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      RichText(text: TextSpan(children: [
+                        TextSpan(text: productList[index].name + '\n', style: TextStyle(color: white, fontSize: 16.0, fontWeight: FontWeight.w400)),
+                        TextSpan(text: 'P' + productList[index].price.toString(), style: TextStyle(color: white, fontSize: 14.0, fontWeight: FontWeight.bold)),
+                      ]),),
+                      SizedBox(width: 40),
+                      IconButton(icon: Icon(Icons.delete, color: white), onPressed: null)
+                    ],
+                  )
                 ],
               ),
             ),
-          )
-        ],
+          );
+        }
+//        children: [
+//
+//        ],
       ),
     );
   }
