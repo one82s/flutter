@@ -1,15 +1,15 @@
-import 'package:firstapp/src/screens/registration.dart';
+import 'package:firstapp/src/screens/login.dart';
 import 'package:firstapp/src/utils/commons.dart';
 import 'package:firstapp/src/utils/screen_navigation.dart';
 import 'package:firstapp/src/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 
-class Login extends StatefulWidget {
+class Registration extends StatefulWidget {
   @override
-  _LoginState createState() => _LoginState();
+  _RegistrationState createState() => _RegistrationState();
 }
 
-class _LoginState extends State<Login> {
+class _RegistrationState extends State<Registration> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,22 +31,43 @@ class _LoginState extends State<Login> {
               Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(color: grey),
-                    color: white,
-                    borderRadius: BorderRadius.circular(15.0)
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 10.0),
-                    child: TextFormField(
-                      decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: "Email",
-                          hintStyle: TextStyle(color: black),
-                          icon: Icon(Icons.email, color: black,)
-                      ),
+                    decoration: BoxDecoration(
+                        border: Border.all(color: grey),
+                        color: white,
+                        borderRadius: BorderRadius.circular(15.0)
                     ),
-                  )
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 10.0),
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: "User name",
+                            hintStyle: TextStyle(color: black),
+                            icon: Icon(Icons.person, color: black,)
+                        ),
+                      ),
+                    )
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Container(
+                    decoration: BoxDecoration(
+                        border: Border.all(color: grey),
+                        color: white,
+                        borderRadius: BorderRadius.circular(15.0)
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 10.0),
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: "Email",
+                            hintStyle: TextStyle(color: black),
+                            icon: Icon(Icons.email, color: black,)
+                        ),
+                      ),
+                    )
                 ),
               ),
               Padding(
@@ -62,11 +83,11 @@ class _LoginState extends State<Login> {
                       child: TextFormField(
                         obscureText: true,
                         decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: "Password",
-                            hintStyle: TextStyle(color: black),
-                            suffixIcon: Icon(Icons.remove_red_eye_outlined, color: black,),
-                            icon: Icon(Icons.lock_outline, color: black,),
+                          border: InputBorder.none,
+                          hintText: "Password",
+                          hintStyle: TextStyle(color: black),
+                          suffixIcon: Icon(Icons.remove_red_eye_outlined, color: black,),
+                          icon: Icon(Icons.lock_outline, color: black,),
                         ),
                       ),
                     )
@@ -75,12 +96,12 @@ class _LoginState extends State<Login> {
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Container(
-                    decoration: BoxDecoration(
-                        color: yellow[400],
-                        border: Border.all(color: white),
-                        borderRadius: BorderRadius.circular(15.0)
-                    ),
-                    child: Padding(
+                  decoration: BoxDecoration(
+                      color: yellow[400],
+                      border: Border.all(color: white),
+                      borderRadius: BorderRadius.circular(15.0)
+                  ),
+                  child: Padding(
                       padding: EdgeInsets.only(top:10.0, bottom: 10.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -88,20 +109,20 @@ class _LoginState extends State<Login> {
                           GestureDetector(
                             onTap: (){},
                             child: Container(
-                                child: CustomText(text: "Login", color: red[600], size: 22, weight: FontWeight.w600,),
+                              child: CustomText(text: "Register", color: red[600], size: 22, weight: FontWeight.w600,),
                             ),
                           ),
                         ],
                       )
-                    ),
+                  ),
                 ),
               ),
               GestureDetector(
-                onTap: (){changeScreen(context, Registration());},
+                onTap: (){changeScreen(context, Login());},
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CustomText(text: 'Register here', size: 22, color: white),
+                    CustomText(text: 'Login here', size: 22, color: white),
                   ],
                 ),
               ),
