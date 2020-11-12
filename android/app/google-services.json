@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "691425829413",
+    "firebase_url": "https://wwj-foodapp.firebaseio.com",
+    "project_id": "wwj-foodapp",
+    "storage_bucket": "wwj-foodapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:691425829413:android:7dde9f5d228db8ee9d55cc",
+        "android_client_info": {
+          "package_name": "com.example.firstapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "691425829413-q0ijpmnsf5d8ct4gubhqv4n53g57a4h6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAfzgK2m6vtYE18yPSww-V4MK4KcSLEQgA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "691425829413-q0ijpmnsf5d8ct4gubhqv4n53g57a4h6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
