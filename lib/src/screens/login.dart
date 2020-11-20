@@ -1,8 +1,12 @@
+import 'package:firstapp/src/providers/user_provider.dart';
+import 'package:firstapp/src/screens/home.dart';
 import 'package:firstapp/src/screens/registration.dart';
 import 'package:firstapp/src/utils/commons.dart';
 import 'package:firstapp/src/utils/screen_navigation.dart';
 import 'package:firstapp/src/widgets/custom_text.dart';
+import 'package:firstapp/src/widgets/loading.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -10,12 +14,15 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final _key = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<UserProvider>(context);
     return Scaffold(
+      key: _key,
       backgroundColor: red,
       body: SafeArea(
-        child: SingleChildScrollView(
+        child: userProvider.status == Status.Authenticating ? Loading(): SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -39,6 +46,7 @@ class _LoginState extends State<Login> {
                   child: Padding(
                     padding: EdgeInsets.only(left: 10.0),
                     child: TextFormField(
+                      controller: userProvider.email,
                       decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: "Email",
@@ -60,6 +68,7 @@ class _LoginState extends State<Login> {
                     child: Padding(
                       padding: EdgeInsets.only(left: 10.0),
                       child: TextFormField(
+                        controller: userProvider.password,
                         obscureText: true,
                         decoration: InputDecoration(
                             border: InputBorder.none,
@@ -86,7 +95,16 @@ class _LoginState extends State<Login> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           GestureDetector(
-                            onTap: (){},
+                            onTap: ()async{
+                              if(!await userProvider.signIn()){
+                                _key.currentState.showSnackBar(
+                                  SnackBar(content: Text("Login failed!"))
+                                );
+                                return;
+                              }
+                              userProvider.clearController();
+                              changeScreenReplacement(context, Home());
+                            },
                             child: Container(
                                 child: CustomText(text: "Login", color: red[600], size: 22, weight: FontWeight.w600,),
                             ),

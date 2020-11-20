@@ -56,19 +56,19 @@ class UserProvider with ChangeNotifier {
           .createUserWithEmailAndPassword(
               email: email.text.trim(), password: password.text.trim())
           .then((user) {
-//        _fireStore.collection('users').doc(result.user.uid).set({
-//          'name': name.text,
-//          'email': email.text,
-//          'uid': result.user.uid,
+        _fireStore.collection('users').doc(user.user.uid).set({
+          'name': name.text,
+          'email': email.text,
+          'uid': user.user.uid,
 //          "likedFood": [],
 //          "likedRestaurants": []
-//        });
-          Map<String, dynamic> userCredentials = {
-            'name': name.text,
-            'email': email.text,
-            'id': user.user.uid
-          };
-          _userServices.createUser(userCredentials);
+        });
+//          Map<String, dynamic> userCredentials = {
+//            'name': name.text,
+//            'email': email.text,
+//            'id': user.user.uid
+//          };
+//          _userServices.createUser(userCredentials);
       });
       return true;
     } catch (e) {
@@ -76,12 +76,7 @@ class UserProvider with ChangeNotifier {
     }
   }
 
-  bool _onError(String error){
-    _status = Status.Unauthenticated;
-    notifyListeners();
-    print("Error: $error");
-    return false;
-  }
+
 
   Future signOut() async {
     _auth.signOut();
@@ -90,11 +85,6 @@ class UserProvider with ChangeNotifier {
     return Future.delayed(Duration.zero);
   }
 
-  void clearController() {
-    name.text = "";
-    password.text = "";
-    email.text = "";
-  }
 
   Future<void> reloadUserModel() async {
     _userModel = await _userServices.getUserById(user.uid);
@@ -111,4 +101,17 @@ class UserProvider with ChangeNotifier {
     }
     notifyListeners();
   }
+
+  void clearController() {
+    name.text = "";
+    password.text = "";
+    email.text = "";
+  }
+
+  bool _onError(String error){
+  _status = Status.Unauthenticated;
+  notifyListeners();
+  print("Error: $error");
+  return false;
+}
 }
